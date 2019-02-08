@@ -47,8 +47,7 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.3.8)
     arel (9.0.0)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
@@ -58,17 +57,13 @@ GEM
       activesupport
     concurrent-ruby (1.1.4)
     crass (1.0.4)
-    domain_name (0.5.20180417)
-      unf (>= 0.0.5, < 1.0.0)
     erubi (1.8.0)
     ffi (1.10.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    http-cookie (1.0.3)
-      domain_name (~> 0.5)
     i18n (1.5.3)
       concurrent-ruby (~> 1.0)
-    json (2.1.0)
+    json (1.8.6)
     jsonapi-renderer (0.2.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -82,20 +77,16 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
-    mime-types (3.2.2)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2018.0812)
+    mime-types (1.25.1)
     mimemagic (0.3.3)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.2.6)
-    netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     pg (1.1.4)
-    public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
     rack-cors (1.0.2)
@@ -129,10 +120,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    rest-client (2.0.2)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
+    rb-readline (0.5.5)
+    rest-client (1.6.9)
+      mime-types (~> 1.16)
     ruby_dep (1.5.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -150,13 +140,10 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.5)
-    unirest (1.0.8)
-      addressable
-      json
-      rest-client
+    unirest (1.1.2)
+      addressable (~> 2.3.5)
+      json (~> 1.8.1)
+      rest-client (~> 1.6.7)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -168,17 +155,18 @@ DEPENDENCIES
   active_model_serializers
   bootsnap (>= 1.1.0)
   byebug
-  json
+  json (~> 1.8.1)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rack-cors
   rails (~> 5.2.2)
+  rb-readline
   rest-client
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
-  unirest
+  unirest (~> 1.1.2)
 
 RUBY VERSION
    ruby 2.3.3p222
