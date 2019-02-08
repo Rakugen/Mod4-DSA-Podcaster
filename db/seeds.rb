@@ -18,7 +18,7 @@ test_id = ["2914b3dbd9d24e60b5073ac64c10fd6f", "9a08629f7a8f4251a56c0c41f8f8a92a
 "85ebe25861b64ea58d851d55f2b9019e", "8d8970470ead450aa5a9d2a1d223d938", "589c5558ab6648b48f97406e9262c389"]
 response_arr = []
 
-def get_podcast_ids
+def get_podcast_ids(array)
 
   response = Unirest.get "https://listennotes.p.rapidapi.com/api/v1/curated_podcasts",
   headers:{
@@ -27,7 +27,7 @@ def get_podcast_ids
 
   response.body["curated_lists"].each do |list|
     list["podcasts"].each do |podcast|
-      response_arr << podcast["id"]
+      array << podcast["id"]
     end
   end
 end
@@ -69,7 +69,10 @@ def get_podcast_info(array)
   end
 end
 
+def run
+  id_array = []
+  get_podcast_ids(id_array)
+  get_podcast_info(id_array)
+end
 
-get_podcast_info(test_id)
-puts Podcast.all
-puts Episode.all
+run
