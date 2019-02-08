@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2019_02_07_190020) do
   create_table "episodes", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.string "genre"
     t.integer "runtime"
     t.integer "episode_num"
     t.string "audio_url"
+    t.integer "podcast_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

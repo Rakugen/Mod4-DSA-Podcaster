@@ -13,9 +13,9 @@
 # https://listennotes.p.rapidapi.com/api/v1/episodes/
 require 'unirest'
 
-test_id = ["2914b3dbd9d24e60b5073ac64c10fd6f", "9a08629f7a8f4251a56c0c41f8f8a92a", "99a8f88389c54382a300a363c74e9f26", "ab9cdf85fcaa4e7d8f31c535d3d6
-22a0", "1494f6eabc3b4aa082e0eb48f80136c6", "04e2c4834802460a83a1bfb1bf1ad318", "ba66002d91e647d7a7da4d2affdd28a4", "85ebe25861b64ea58d851d55f2
-b9019e", "8d8970470ead450aa5a9d2a1d223d938", "589c5558ab6648b48f97406e9262c389"]
+test_id = ["2914b3dbd9d24e60b5073ac64c10fd6f", "9a08629f7a8f4251a56c0c41f8f8a92a", "99a8f88389c54382a300a363c74e9f26",
+"ab9cdf85fcaa4e7d8f31c535d3d622a0", "1494f6eabc3b4aa082e0eb48f80136c6", "04e2c4834802460a83a1bfb1bf1ad318", "ba66002d91e647d7a7da4d2affdd28a4",
+"85ebe25861b64ea58d851d55f2b9019e", "8d8970470ead450aa5a9d2a1d223d938", "589c5558ab6648b48f97406e9262c389"]
 response_arr = []
 
 def get_podcast_ids
@@ -44,6 +44,7 @@ def get_podcast_info(array)
     podcast = Podcast.find_or_create_by(
       title: response.body["title"],
       num_episodes: response.body["total_episodes"],
+      description: response.body['description'],
       img_url: response.body["image"],
       thumbnail: response.body["thumbnail"],
       genres: response.body["genres"],
@@ -51,18 +52,24 @@ def get_podcast_info(array)
       rss: response.body["rss"]
     )
 
-    response.body["episodes"].each do |episode|
+    episodes = response.body["episodes"]
+    puts episodes
+    episodes.each_with_index do |episode, i|
+
+      Episode.find_or_create_by(
+      title: episode['title'],
+      description: episode['description'],
+      runtime: episode['audio_length'],
+      episode_num: response.body['total_episodes'] - i,
+      audio_url: episode['audio'],
+      podcast_id: podcast.id
+      )
 
     end
-    # t.string :title
-    # t.string :description
-    # t.string :genre
-    # t.integer :runtime
-    # t.integer :episode_num
-    # t.string :audio_url
   end
 end
 
 
 get_podcast_info(test_id)
 puts Podcast.all
+puts Episode.all
