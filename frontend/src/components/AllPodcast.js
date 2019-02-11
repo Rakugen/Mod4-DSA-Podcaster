@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Create from './Create'
 import SearchForm from './SearchForm'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 class AllPodcast extends Component {
   render(){
@@ -16,7 +17,7 @@ class AllPodcast extends Component {
         {
           this.props.allPodcast.slice(this.props.firstIndex, this.props.lastIndex).map(podcast => {
           return( <div className="navbar" key={podcast.id}>
-              <h2 onClick={() => this.props.handlePodcastMenuClick(podcast.id)} id="title">{podcast.title}</h2>
+              <span className="podcast-menu" onClick={() => this.props.handlePodcastMenuClick(podcast.id)} id="title">{podcast.title}</span>
             </div>
           )})
         }

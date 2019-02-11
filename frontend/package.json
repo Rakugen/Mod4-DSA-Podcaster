@@ -6,6 +6,7 @@
     "react": "^16.8.1",
     "react-audio-player": "^0.11.0",
     "react-dom": "^16.8.1",
+    "react-infinite-scroll-component": "^4.5.0",
     "react-scripts": "2.1.4"
   },
   "scripts": {
