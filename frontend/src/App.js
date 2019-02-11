@@ -5,7 +5,12 @@ import AllPodcast from './components/AllPodcast'
 import AudioPlayer from './components/AudioPlayer'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
+import DropDown from './components/DropDown'
 import SelectedPodcast from './components/SelectedPodcast'
+import 'materialize-css';
+import 'materialize-css/dist/css/materialize.min.css';
+import {Dropdown, NavItem, Button, Container} from 'react-materialize'
+import 'jquery';
 
 class App extends Component {
 
@@ -13,21 +18,38 @@ class App extends Component {
     allPodcast: [],
     podcast: {},
     firstIndex: 0,
-    lastIndex: 5,
+    lastIndex: 10,
     show: false,
     episode: {},
     thumbnail: {},
     firstEpisodeIndex: 0,
-    lastEpisodeIndex: 5
+    lastEpisodeIndex: 5,
+    search: '',
+    filter: []
   }
 
 componentDidMount(){
   fetch('http://localhost:3000/api/v1/podcasts')
   .then(response => response.json())
   .then(podcast => {
+    podcast.sort((a, b) => {
+      return a.title.localeCompare(b.title)
+    })
     this.setState({
       allPodcast: podcast
     })
+  })
+}
+
+
+
+filterSearchBar = () => {
+  return this.state.allPodcast.filter(podcast => podcast.title.toLowerCase().includes(this.state.search.toLowerCase()))
+}
+
+handleSearch = (e) => {
+  this.setState({
+    search: e.target.value
   })
 }
 
@@ -86,18 +108,20 @@ back = () => {
         <div>
         <Navbar />
         </div>
-        <div className='grid'>
+        <div className='row'>
           <Login />
-          <div className='column-1'>
+          <div className='col s3'>
             <AllPodcast
             addMore={this.addMore}
             back={this.back}
             firstIndex={this.state.firstIndex}
             lastIndex={this.state.lastIndex}
-            allPodcast={this.state.allPodcast}
+            allPodcast={this.filterSearchBar()}
+            handleSearch={this.handleSearch}
+            search={this.state.search}
             handlePodcastMenuClick={this.handlePodcastMenuClick}/>
           </div>
-          <div className="column-2 navbar">
+          <div className="col s9">
             <SelectedPodcast
             allPodcast={this.state.allPodcast}
             podcast={this.state.podcast}

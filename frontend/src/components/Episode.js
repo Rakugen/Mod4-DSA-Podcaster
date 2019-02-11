@@ -6,7 +6,14 @@ class Episode extends Component {
   render(){
   return(
     <div onClick={() => this.props.handleEpisodeMenuClick(this.props.id)}>
-    <h1>{this.props.title}</h1>
+    <li className="collection-item">
+    <div className='collapsible-header'>
+    {this.props.title}
+    </div>
+    <div className="collapsible-body">
+    <span>{this.props.description}</span>
+    </div>
+    </li>
     </div>
     )
   }

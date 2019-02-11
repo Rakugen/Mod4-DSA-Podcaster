@@ -16,15 +16,20 @@ code {
 .column-1 {
   float: left;
   width: 32%;
-  border-right: 5px solid
 }
 
-.navbar {
-  border-bottom: 5px solid;
-}
 
 .column-2 {
   float: left;
-  width: 66%;
-  border-right: 5px solid
+  width: 10%;
+}
+
+.column-3 {
+  float: right;
+  width: 65%;
+}
+
+.square {
+  width: 13%;
+  align-content: flex-start;
 }

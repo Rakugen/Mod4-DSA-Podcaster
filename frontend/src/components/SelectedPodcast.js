@@ -3,7 +3,7 @@ import EpisodeContainer from './EpisodeContainer'
 
 const SelectedPodcast = ({podcast, show, allPodcast, handleEpisodeMenuClick, lastEpisodeIndex, firstEpisodeIndex, addMoreEpisodes, backEpisodes}) => {
   const clickedPodcast =
-  <div className="navbar">
+  <div className="card-panel hoverable">
   <h1>{podcast.title}</h1>
   <p>{podcast.description}</p>
   <div>
