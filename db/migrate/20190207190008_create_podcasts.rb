@@ -9,7 +9,6 @@ class CreatePodcasts < ActiveRecord::Migration[5.2]
       t.string :genres
       t.string :publisher
       t.string :rss
-      # t.integer :podcast_id
 
       t.timestamps
     end
