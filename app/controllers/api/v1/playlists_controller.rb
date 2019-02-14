@@ -10,8 +10,8 @@ class Api::V1::PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = Playlist.new(playlist_params)
-    @playlist.save
+    @playlist = Playlist.find_or_create_by(playlist_params)
+    # @playlist.save
     render json: @playlist, status: :created
   end
 
@@ -19,6 +19,11 @@ class Api::V1::PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     @playlist.update(playlist_params)
     render json: @playlist, status: :accepted
+  end
+
+  def destroy
+    @playlist = Playlist.find(params[:id])
+    @playlist.destroy
   end
 
   private
