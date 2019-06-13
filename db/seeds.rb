@@ -14,7 +14,7 @@
 require 'unirest'
 
 def get_podcast_ids(array)
-  response = Unirest.get "https://listennotes.p.rapidapi.com/api/v1/curated_podcasts",
+  response = Unirest.get "https://listennotes.p.rapidapi.com/api/v1/curated_podcasts?page=2",
   headers:{
     "X-RapidAPI-Key" => "241bab741dmsh0f74711cc57f299p1b30f0jsn32155b936037"
   }
@@ -63,6 +63,9 @@ def run
   get_podcast_ids(id_array)
   puts "Finished Fetching Curated Lists"
   get_podcast_info(id_array)
+  # id_array=["fe066932ebae47919a47ed741650796f"]
+  # puts "Finished Fetching Curated Lists"
+  # get_podcast_info(id_array)
 end
 
 run
